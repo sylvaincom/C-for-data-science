@@ -49,26 +49,70 @@ Made a Neuron!
 Made a Neuron!
 
 Pass 1: Inputs: 5.1 3.5 1.4 0.2 
-Outputs: 0.875738 
+Outputs: 8.97108 
 Targets: 0 
-Net recent average error: 0.00867068
+Net recent average error: 0.0888225
 
 Pass 2: Inputs: 4.9 3 1.4 0.2 
-Outputs: 0.834896 
+Outputs: 0 
 Targets: 0 
-Net recent average error: 0.0168511
+Net recent average error: 0.0879431
 ```
-and the last lines are:
+and some excerpts are the following. When the neural network has finished learning the ouput `0` and starts learning the ouput `1`: 
+```
+Pass 49: Inputs: 5.3 3.7 1.5 0.2 
+Outputs: 0 
+Targets: 0 
+Net recent average error: 0.0550931
+
+Pass 50: Inputs: 5 3.3 1.4 0.2 
+Outputs: 0 
+Targets: 0 
+Net recent average error: 0.0545476
+
+Pass 51: Inputs: 7 3.2 4.7 1.4 
+Outputs: 0 
+Targets: 1 
+Net recent average error: 0.0639085
+
+Pass 52: Inputs: 6.4 3.2 4.5 1.5 
+Outputs: 0.00622988 
+Targets: 1 
+Net recent average error: 0.0731151
+```
+When the neural network has finished learning the ouput `1` and starts learning the ouput `2`: 
+```
+Pass 98: Inputs: 6.2 2.9 4.3 1.3 
+Outputs: 0.999933 
+Targets: 1 
+Net recent average error: 0.169155
+
+Pass 99: Inputs: 5.1 2.5 3 1.1 
+Outputs: 0.999932 
+Targets: 1 
+Net recent average error: 0.167481
+
+Pass 100: Inputs: 5.7 2.8 4.1 1.3 
+Outputs: 0.99994 
+Targets: 1 
+Net recent average error: 0.165823
+
+Pass 101: Inputs: 6.3 3.3 6 2.5 
+Outputs: 0.999953 
+Targets: 2 
+Net recent average error: 0.174083
+```
+When the neural network has finished learning the ouput `2`: 
 ```
 Pass 149: Inputs: 6.2 3.4 5.4 2.3 
-Outputs: -0.98307 
-Targets: -1 
-Net recent average error: 0.105459
+Outputs: 2 
+Targets: 2 
+Net recent average error: 0.123637
 
 Pass 150: Inputs: 5.9 3 5.1 1.8 
-Outputs: -0.983099 
-Targets: -1 
-Net recent average error: 0.104582
+Outputs: 2 
+Targets: 2 
+Net recent average error: 0.122413
 
 Pass 151
 Done
