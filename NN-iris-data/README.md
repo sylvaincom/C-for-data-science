@@ -82,11 +82,6 @@ Net recent average error: 0.0731151
 ```
 When the neural network has finished learning the ouput `1` and starts learning the ouput `2`: 
 ```
-Pass 98: Inputs: 6.2 2.9 4.3 1.3 
-Outputs: 0.999933 
-Targets: 1 
-Net recent average error: 0.169155
-
 Pass 99: Inputs: 5.1 2.5 3 1.1 
 Outputs: 0.999932 
 Targets: 1 
@@ -101,6 +96,11 @@ Pass 101: Inputs: 6.3 3.3 6 2.5
 Outputs: 0.999953 
 Targets: 2 
 Net recent average error: 0.174083
+
+Pass 102: Inputs: 5.8 2.7 5.1 1.9 
+Outputs: 1.14407 
+Targets: 2 
+Net recent average error: 0.180834
 ```
 When the neural network has finished learning the ouput `2`: 
 ```
