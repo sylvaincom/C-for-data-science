@@ -131,4 +131,5 @@ We can also modify all the other important hyperparameters :
 - the learning rate at line 139 of `neural-net-tutorial.cpp`
 - the activation/transfer function at lines 192-202 of `neural-net-tutorial.cpp`
 - the loss/error function at lines 262-272 of `neural-net-tutorial.cpp`
+
 We did several simulations to see the impact on the convergence.
