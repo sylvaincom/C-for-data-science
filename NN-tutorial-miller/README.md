@@ -143,4 +143,4 @@ instead of:
 ```
 Hence, our hidden layer will have 5 neurons instead of 4.  We ran the simulations and we appear to have better results.
 
-Being able to modidy the architecture of our model is very important.
+Being able to modidy the architecture of our model is very important. Note that the topology is a hyper-parameter.
