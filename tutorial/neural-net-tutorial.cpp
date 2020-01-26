@@ -1,4 +1,6 @@
 // neural-net-tutorial.cpp
+// David Miller, http://millermattson.com/dave
+// See the associated video for instructions: http://vimeo.com/19569529
 
 
 #include <vector>
@@ -356,7 +358,7 @@ void showVectorVals(string label, vector<double> &v)
 
 int main()
 {
-    TrainingData trainData("trainingData.txt"); // change here the training data
+    TrainingData trainData("trainingData.txt"); // sylvaincom changed the path of the training data here
 
     // e.g., { 3, 2, 1 }
     vector<unsigned> topology;
