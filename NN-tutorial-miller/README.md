@@ -34,7 +34,7 @@ out: 1.0
 ```
 The first line is the topology we want for our neural network. Here, the architecture of our neural network consists of three layers with respectively 2, 4 and 1 nodes. (Indeed, the input is of size 2 and the ouput is of size 1.) Then, we give the corresponding inputs and outputs we wish our neural network to predict.
 
-Beware that our training data uses `RAND()` thus changes at each we generate it.
+Beware that the program that generates our training data `makeTrainingSamples.cpp` uses `RAND()` thus changes each time we generate it.
 
 ## 2) Training our neural network on `trainingData.txt`
 
