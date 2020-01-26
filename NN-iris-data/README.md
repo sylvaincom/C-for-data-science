@@ -27,11 +27,11 @@ Once we have our training data, we train our neural network on it. The training 
 ```
 Here, the training data is stated as being `iris.txt`. The command for training our neural network is:
 ```
-g++ neural-net-tutorial.cpp -o neural-net-tutorial
-./neural-net-tutorial > out.txt
+g++ neural-net-iris.cpp -o neural-net-iris
+./neural-net-iris > out-iris.txt
 ```
 
-The header of our results is:
+The header of our results `out-iris.txt` is:
 ```
 Made a Neuron!
 Made a Neuron!
@@ -58,17 +58,17 @@ Net recent average error: 0.0168511
 ```
 and the last lines are:
 ```
-Pass 149: Inputs: 6.2 3.4 5.4 2.3 
-Outputs: 0.997006 
-Targets: 2 
-Net recent average error: 0.416861
+Pass 99: Inputs: 5.1 2.5 3 1.1 
+Outputs: 0.964238 
+Targets: 1 
+Net recent average error: 0.0457231
 
-Pass 150: Inputs: 5.9 3 5.1 1.8 
-Outputs: 0.997061 
-Targets: 2 
-Net recent average error: 0.422664
+Pass 100: Inputs: 5.7 2.8 4.1 1.3 
+Outputs: 0.964507 
+Targets: 1 
+Net recent average error: 0.0456218
 
-Pass 151
+Pass 101
 Done
 ```
 
