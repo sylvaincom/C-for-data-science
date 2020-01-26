@@ -23,4 +23,4 @@ out: 0.0
 It is important to have our data in this specific format because lines 15 to 110 of `neural-network-tutorial.cpp` are designed to read the training data in this specific format.
 Note that in the first line, we changed the number of neurons in the input layer, as our training data is of size 4 (plus the label).
 
-However, our data set `iris.txt` is ordered because we first have 50 samples with label 0 then 50 samples with label 1 then 50 samples with label 2. We need to shuffle it.
+Note that our data set `iris.txt` is ordered because we first have 50 samples with label 0 then 50 samples with label 1 then 50 samples with label 2.
