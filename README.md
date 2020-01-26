@@ -1,4 +1,4 @@
-# C programming for Data Science
+# C/C++ pramming for Data Science
 
 Authors:
 - [Sylvain Combettes](https://www.linkedin.com/in/sylvain-combettes), MSc candidate at Ecole des Mines de Nancy
