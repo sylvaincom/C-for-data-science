@@ -31,16 +31,20 @@ out: 1.0
 in: 0.0 1.0 
 out: 1.0
 ```
-The first line is the topology we want for our neural network. Here, the architecture of our neural network consists of three layers with respectively 2, 4 and 1 node. Then, we give the corresponding inputs and outputs we wish our neural network to predict.
+The first line is the topology we want for our neural network. Here, the architecture of our neural network consists of three layers with respectively 2, 4 and 1 nodes. (Indeed, the input is of size 2 and the ouput is of size 1.) Then, we give the corresponding inputs and outputs we wish our neural network to predict.
 
 ### 2) Training our neural network (on the previous training data)
 
-Once we have our training data, we train our neural network on it. The training data we choose has to be stated at line 361 of the file `neural-net-tutorial.cpp`. Here, the training data is stated as being `trainingData.txt`. The command for training our neural network is:
+Once we have our training data, we train our neural network on it. The training data we choose has to be stated at line 361 of the file `neural-net-tutorial.cpp`:
+```
+    TrainingData trainData("trainingData.txt");
+```
+Here, the training data is stated as being `trainingData.txt`. The command for training our neural network is:
 ```
 g++ neural-net-tutorial.cpp -o neural-net-tutorial
 ./neural-net-tutorial > out.txt
 ```
-Note that the execution is very fast.
+(Note that the execution is very fast.)
 
 We open the results `out.txt`:
 ```
@@ -84,6 +88,59 @@ Pass 5: Inputs: 0 1
 Outputs: 0.991142 
 Targets: 1 
 Net recent average error: 0.00985924
-```
 
-The first lines are debug statements. We have 2000 pass in total, each pass corresponding to a training sample. At each pass, the `Outputs` is the value our neural network predicts given the training sample and the `Targets` is the correct true value we wish our neural network to predict. For the first pass, there is an error that gets better after each update of the weights.
+Pass 6: Inputs: 0 1 
+Outputs: 0.991135 
+Targets: 1 
+Net recent average error: 0.00984939
+
+Pass 7: Inputs: 0 1 
+Outputs: 0.991134 
+Targets: 1 
+Net recent average error: 0.00983966
+
+Pass 8: Inputs: 1 1 
+Outputs: 0.996474 
+Targets: 0 
+Net recent average error: 0.0196083
+```
+The first lines are debug statements. We have 2000 passes in total, each pass corresponding to a training sample. At each pass, `Outputs` is the value our neural network predicts given the training sample and `Targets` is the correct true value we wish our neural network to predict. For the first pass, there is an error that gets better after each update of the weights. At pass 8, we can see that the prediction is still very bad. However at the last passes, the results are much better:
+```
+Pass 1998: Inputs: 1 1 
+Outputs: -0.0008752 
+Targets: 0 
+Net recent average error: 0.0220003
+
+Pass 1999: Inputs: 0 1 
+Outputs: 0.970885 
+Targets: 1 
+Net recent average error: 0.0220707
+
+Pass 2000: Inputs: 1 1 
+Outputs: 0.00373252 
+Targets: 0 
+Net recent average error: 0.0218892
+
+Pass 2001: Inputs: 0 0 
+Outputs: 0.00412659 
+Targets: 0 
+Net recent average error: 0.0217133
+
+Pass 2002
+Done
+```
+We have trained our neural network: given an input, we can predict the XOR value!
+
+### More experiments
+
+We can modify the topology of our neural network by writing line 11 of `makeTrainingSamples.cpp`:
+```
+	cout << "topology: 2 5 1" << endl;
+```
+instead of:
+```
+	cout << "topology: 2 4 1" << endl;
+```
+Hence, our hidden layer will have 5 neurons instead of 4.  We ran the simulations and we appear to have better results.
+
+Being able to modidy the architecture of our model is very important.
