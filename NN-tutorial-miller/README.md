@@ -4,7 +4,7 @@ The codes are taken from [David Miller's tutorial](http://www.millermattson.com/
 
 We execute the `cpp` files with the `g++` compiler in a Terminal. We move into the correct folder.
 
-### 1) Generating our training data: XOR
+## 1) Generating our training data: XOR
 
 First, we generate our training data to predict the values of [XOR](https://en.wikipedia.org/wiki/Exclusive_or), which will be the input of our neural network:
 ```
@@ -33,7 +33,7 @@ out: 1.0
 ```
 The first line is the topology we want for our neural network. Here, the architecture of our neural network consists of three layers with respectively 2, 4 and 1 nodes. (Indeed, the input is of size 2 and the ouput is of size 1.) Then, we give the corresponding inputs and outputs we wish our neural network to predict.
 
-### 2) Training our neural network (on the previous training data)
+## 2) Training our neural network (on the previous training data)
 
 Once we have our training data, we train our neural network on it. The training data we choose has to be stated at line 361 of the file `neural-net-tutorial.cpp`:
 ```
@@ -131,7 +131,7 @@ Done
 ```
 We have trained our neural network: given an input, we can predict the XOR value!
 
-### More experiments
+## 3) More experiments
 
 We can modify the topology of our neural network by writing line 11 of `makeTrainingSamples.cpp`:
 ```
