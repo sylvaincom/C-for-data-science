@@ -6,10 +6,6 @@ To run them, once we are in the correct directory, execute in a Terminal:
 ```
 g++ makeTrainingSamples.cpp -o makeTrainingSamples
 ./makeTrainingSamples > trainingData.txt
-vim trainingData.txt
-:q
 g++ neural-net-tutorial.cpp -o neural-net-tutorial
 ./neural-net-tutorial > out.txt
-vim out.txt
-:q
 ```
