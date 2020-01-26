@@ -6,7 +6,7 @@ Our training data has 3 classes (labels 0, 1 and 2), with 50 samples per class a
 
 # 1) Getting the Iris dataset in the right format
 
-We loaded the Iris data set on Python and exported in the `txt` format using the Pandas library. Then, we opened a basic text editor to change it so that the header of `iris.txt` is:
+We loaded the Iris data set on Python and exported in the `txt` format using the Pandas library. The labels are in {-1, 0, 1}. Then, we opened a basic text editor to change it so that the header of `iris.txt` is:
 ```
 topology: 4 4 1
 in: 5.1 3.5 1.4 0.2
@@ -17,7 +17,7 @@ out: 0.0
 It is important to have our data in this specific format because lines 15 to 110 of `neural-network-tutorial.cpp` are designed to read the training data in this specific format.
 Note that in the first line, we changed the number of neurons in the input layer, as our training data is of size 4 (plus the label).
 
-Note that our data set `iris.txt` is ordered because we first have 50 samples with label 0 then 50 samples with label 1 then 50 samples with label 2.
+Note that our data set `iris.txt` is ordered because we first have 50 samples with label `-1` then 50 samples with label `0` then 50 samples with label `1`.
 
 # 2) Training our neural network on `iris.txt`
 
@@ -58,17 +58,17 @@ Net recent average error: 0.0168511
 ```
 and the last lines are:
 ```
-Pass 99: Inputs: 5.1 2.5 3 1.1 
-Outputs: 0.964238 
-Targets: 1 
-Net recent average error: 0.0457231
+Pass 149: Inputs: 6.2 3.4 5.4 2.3 
+Outputs: -0.98307 
+Targets: -1 
+Net recent average error: 0.105459
 
-Pass 100: Inputs: 5.7 2.8 4.1 1.3 
-Outputs: 0.964507 
-Targets: 1 
-Net recent average error: 0.0456218
+Pass 150: Inputs: 5.9 3 5.1 1.8 
+Outputs: -0.983099 
+Targets: -1 
+Net recent average error: 0.104582
 
-Pass 101
+Pass 151
 Done
 ```
 
