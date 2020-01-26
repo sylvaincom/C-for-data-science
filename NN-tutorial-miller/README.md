@@ -114,7 +114,7 @@ Done
 ```
 We have trained the weights our neural network: given an input, we can predict the XOR value!
 
-Note that for a same input `trainingData.txt`, all the predictions `Outputs` and errors `Net recent average error` do not each for different execution.
+Note that for a same input `trainingData.txt`, all the predictions `Outputs` and errors `Net recent average error` do not each change for different executions.
 
 ## 3) Modifying the model of our neural network
 
