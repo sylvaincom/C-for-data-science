@@ -4,7 +4,7 @@ The codes are taken from [David Miller's tutorial](http://www.millermattson.com/
 
 We execute the `cpp` files with the `g++` compiler in a Terminal. We move into the correct folder.
 
-## 1) Generating our training data: XOR
+## 1) Generating our training data for predicting XOR
 
 First, we generate our training data to predict the values of [XOR](https://en.wikipedia.org/wiki/Exclusive_or), which will be the input of our neural network:
 ```
