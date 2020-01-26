@@ -143,9 +143,8 @@ private:
     double m_gradient;
 };
 
-double Neuron::eta = 0.15;    // overall net learning rate, [0.0..1.0]
+double Neuron::eta = 0.3;    // overall net learning rate, [0.0..1.0]
 double Neuron::alpha = 0.5;   // momentum, multiplier of last deltaWeight, [0.0..1.0]
-
 
 void Neuron::updateInputWeights(Layer &prevLayer)
 {
@@ -197,15 +196,15 @@ void Neuron::calcOutputGradients(double targetVal)
 
 double Neuron::transferFunction(double x) // transfer function also means activation function
 {
-    // tanh - output range [-1.0..1.0]
+    // output range: all positive real numbers
 
-    return tanh(x);
+    return log(1.0 + exp(x));
 }
 
 double Neuron::transferFunctionDerivative(double x)
 {
-    // tanh derivative
-    return 1.0 - x * x;
+    // trasnfer function derivative
+    return 1.0 / (1 + exp(-x));
 }
 
 void Neuron::feedForward(const Layer &prevLayer)
