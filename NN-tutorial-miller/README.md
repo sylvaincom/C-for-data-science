@@ -89,29 +89,9 @@ Pass 5: Inputs: 0 1
 Outputs: 0.991142 
 Targets: 1 
 Net recent average error: 0.00985924
-
-Pass 6: Inputs: 0 1 
-Outputs: 0.991135 
-Targets: 1 
-Net recent average error: 0.00984939
-
-Pass 7: Inputs: 0 1 
-Outputs: 0.991134 
-Targets: 1 
-Net recent average error: 0.00983966
-
-Pass 8: Inputs: 1 1 
-Outputs: 0.996474 
-Targets: 0 
-Net recent average error: 0.0196083
 ```
 The first lines are debug statements. We have 2000 passes in total, each pass corresponding to a training sample. At each pass, `Outputs` is the value our neural network predicts given the training sample and `Targets` is the correct true value we wish our neural network to predict. For the first pass, there is an error that gets better after each update of the weights. At pass 8, we can see that the prediction is still very bad. However at the last passes, the results are much better:
 ```
-Pass 1998: Inputs: 1 1 
-Outputs: -0.0008752 
-Targets: 0 
-Net recent average error: 0.0220003
-
 Pass 1999: Inputs: 0 1 
 Outputs: 0.970885 
 Targets: 1 
