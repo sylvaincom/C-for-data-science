@@ -52,7 +52,7 @@ We open the results `out.txt`:
 vim out.txt
 ```
 
-The header of our results is:
+The header of our results `out.txt` is:
 ```
 Made a Neuron!
 Made a Neuron!
