@@ -6,7 +6,7 @@ Our training data has 3 classes (labels 0, 1 and 2), with 50 samples per class a
 
 # 1) Getting the Iris dataset in the right format
 
-We loaded the Iris data set on Python and exported in the `txt` format using the Pandas library. The labels are transformed from {0, 1, 2} to {1, 0, -1}. Then, we opened a basic text editor to change it so that the header of `iris.txt` is:
+We loaded the Iris data set on Python and exported in the `txt` format using the Pandas library. The labels are in {0, 1, 2}. Then, we opened a basic text editor to change it so that the header of `iris.txt` is:
 ```
 topology: 4 4 1
 in: 5.1 3.5 1.4 0.2
@@ -20,6 +20,8 @@ Note that in the first line, we changed the number of neurons in the input layer
 Note that our data set `iris.txt` is ordered because we first have 50 samples with label `-1` then 50 samples with label `0` then 50 samples with label `1`.
 
 # 2) Training our neural network on `iris.txt`
+
+Because the target values are now in {0, 1, 2}, we can no longer use tanh as the activation function which outputs in [-1, 1], but we use the [SoftPlus function](https://en.wikipedia.org/wiki/Activation_function) ehich outputs in all real positive numbers. We change it lines 197-208 of `neural-net-iris.cpp`. We also change the learning rate line 146 of `neural-net-iris.cpp`.
 
 Once we have our training data, we train our neural network on it. The training data we choose has to be stated at line 361 of the file neural-net-tutorial.cpp:
 ```
