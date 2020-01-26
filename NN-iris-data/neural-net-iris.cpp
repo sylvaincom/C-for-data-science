@@ -1,6 +1,7 @@
-// neural-net-tutorial.cpp
-// David Miller, http://millermattson.com/dave
+// neural-net-iris.cpp
+// Original author: David Miller, http://millermattson.com/dave
 // See the associated video for instructions: http://vimeo.com/19569529
+// Modified by Sylvain Combettes and Julien Muller, January 2020.
 
 
 #include <vector>
@@ -12,6 +13,8 @@
 #include <sstream>
 
 using namespace std;
+
+// ****************** class TrainingData ******************
 
 // Silly class to read training data from a text file -- Replace This.
 // Replace class TrainingData with whatever you need to get input data into the
@@ -100,6 +103,8 @@ unsigned TrainingData::getTargetOutputs(vector<double> &targetOutputVals)
 }
 
 
+// ****************** 
+
 struct Connection
 {
     double weight;
@@ -111,7 +116,9 @@ class Neuron;
 
 typedef vector<Neuron> Layer;
 
+
 // ****************** class Neuron ******************
+
 class Neuron
 {
 public:
@@ -188,7 +195,7 @@ void Neuron::calcOutputGradients(double targetVal)
     m_gradient = delta * Neuron::transferFunctionDerivative(m_outputVal);
 }
 
-double Neuron::transferFunction(double x)
+double Neuron::transferFunction(double x) // transfer function also means activation function
 {
     // tanh - output range [-1.0..1.0]
 
@@ -228,6 +235,7 @@ Neuron::Neuron(unsigned numOutputs, unsigned myIndex)
 
 
 // ****************** class Net ******************
+
 class Net
 {
 public:
@@ -355,6 +363,7 @@ void showVectorVals(string label, vector<double> &v)
     cout << endl;
 }
 
+// ****************** main() ******************
 
 int main()
 {
