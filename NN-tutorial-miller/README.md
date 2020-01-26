@@ -141,7 +141,7 @@ instead of:
 ```
 	cout << "topology: 2 4 1" << endl;
 ```
-Hence, our hidden layer will have 5 neurons instead of 4.  We ran the simulations and we appear to have better results.
+Hence, our hidden layer will have 5 neurons instead of 4.  We ran the simulations and we appear to have better results (meaning that the error gets smaller faster with respect to the index of pass).
 
 Being able to modidy the architecture of our model is very important. Note that the topology (for example the number of neurons of the hidden-layer) is a hyper-parameter.
 > In machine learning, a **hyperparameter** is a parameter whose value is set before the learning process begins. The values of other parameters are obtained via training.
