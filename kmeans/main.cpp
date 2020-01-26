@@ -3,15 +3,19 @@
 
 int main() {
 
-    std::ifstream input;
-    input.open("C:/Users/julie/Desktop/test_data_1.dat");
     std::ostream &output_console = std::cout;
-    kmeans_set kmeans_set();
-    //kmeans_set km(input, ',');
-    kmeans_set().compute_centroids(5);
 
+    //Pour un fichier choisi dans
+    /*std::ifstream input;
+    input.open("C:/Users/julie/Desktop/test_points.txt");   //à adapter en fonction du répertoire
+    kmeans_set km(input, ',');*/
+
+    //Pour une génération de points aléatoire
+    kmeans_set kmeans_set(20);
+
+    kmeans_set.algo_kmeans(4);
     std::cout << "\n\nOutput in main():\n";
-    kmeans_set().print_centroids(output_console, ',');
+    kmeans_set.print_centroids(output_console, ',');
     return 0;
 
 }
