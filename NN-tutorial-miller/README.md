@@ -16,6 +16,7 @@ We open our training data with:
 ```
 vim trainingData.txt
 ```
+Enter `:q` to quit the file.
 
 The header of our training data is:
 ```
