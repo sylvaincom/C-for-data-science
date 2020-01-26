@@ -13,14 +13,63 @@ in: 5.1 3.5 1.4 0.2
 out: 0.0
 in: 4.9 3.0 1.4 0.2
 out: 0.0
-in: 4.7 3.2 1.3 0.2
-out: 0.0
-in: 4.6 3.1 1.5 0.2
-out: 0.0
-in: 5.0 3.6 1.4 0.2
-out: 0.0
 ```
 It is important to have our data in this specific format because lines 15 to 110 of `neural-network-tutorial.cpp` are designed to read the training data in this specific format.
 Note that in the first line, we changed the number of neurons in the input layer, as our training data is of size 4 (plus the label).
 
 Note that our data set `iris.txt` is ordered because we first have 50 samples with label 0 then 50 samples with label 1 then 50 samples with label 2.
+
+# 2) Training our neural network on `iris.txt`
+
+Once we have our training data, we train our neural network on it. The training data we choose has to be stated at line 361 of the file neural-net-tutorial.cpp:
+```
+    TrainingData trainData("iris.txt");
+```
+Here, the training data is stated as being `iris.txt`. The command for training our neural network is:
+```
+g++ neural-net-tutorial.cpp -o neural-net-tutorial
+./neural-net-tutorial > out.txt
+```
+
+The header of our results is:
+```
+Made a Neuron!
+Made a Neuron!
+Made a Neuron!
+Made a Neuron!
+Made a Neuron!
+Made a Neuron!
+Made a Neuron!
+Made a Neuron!
+Made a Neuron!
+Made a Neuron!
+Made a Neuron!
+Made a Neuron!
+
+Pass 1: Inputs: 5.1 3.5 1.4 0.2 
+Outputs: 0.875738 
+Targets: 0 
+Net recent average error: 0.00867068
+
+Pass 2: Inputs: 4.9 3 1.4 0.2 
+Outputs: 0.834896 
+Targets: 0 
+Net recent average error: 0.0168511
+```
+and the last lines are:
+```
+Pass 149: Inputs: 6.2 3.4 5.4 2.3 
+Outputs: 0.997006 
+Targets: 2 
+Net recent average error: 0.416861
+
+Pass 150: Inputs: 5.9 3 5.1 1.8 
+Outputs: 0.997061 
+Targets: 2 
+Net recent average error: 0.422664
+
+Pass 151
+Done
+```
+
+Thus, we have trained our neural network on another data set!
