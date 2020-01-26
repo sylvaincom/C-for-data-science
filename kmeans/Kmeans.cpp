@@ -60,6 +60,14 @@ void kmeans_set::print_point(std::ostream & output, std::vector<double> vec, cha
     }
 }
 
+void kmeans_set::print_centroids(std::ostream & output, char delimiter) {
+    for (auto i = clusters.begin(); i != clusters.end(); i++) {
+        if (i != clusters.begin()) {
+            output << "\n";
+        }
+        print_point(output, i->centroid, delimiter);
+    }
+}
 
 void kmeans_set::import_points(std::list<std::vector<double>> & list_point) {
     for (auto j = list_point.begin(); j != list_point.end(); j++) {
@@ -68,13 +76,10 @@ void kmeans_set::import_points(std::list<std::vector<double>> & list_point) {
         if (dataset.empty()) {
             dataset.push_back(new_point);
         }
+        //On trie les points lors de l'insertion, pour que les centroides soient équirépartis par la suite
         else if (dataset.front().point.size() == j->size()) {
-            // Assures dimensional integrity
-            // Sorting on intake assures well-dispursed centroid selection
-            // Well-dispursed centroid selection helps mitigate centroids "fighting" over points
             auto i = dataset.begin();
-            while(i != dataset.end() && (i-> point < *j)) {   // PRECEDENCE MATTERS!!
-                // Sorts points on insert - this ensures evenly distributed centroid picking
+            while(i != dataset.end() && (i-> point < *j)) {
                 i++;
             }
             dataset.insert(i,new_point);
@@ -82,26 +87,8 @@ void kmeans_set::import_points(std::list<std::vector<double>> & list_point) {
     }
 }
 
-/*kmeans_set::kmeans_set():
-nb_points(20),
-epsilon(0),
-hard_limit(std::numeric_limits<unsigned int>::max())
-{
-    std::list<std::vector<double>> point_list;
-    for (auto i =0;i < nb_points;i++){
-        auto x = rand()%(10);
-        auto y = rand()%(10);
-        std::vector<double> temp_point;
-        temp_point.push_back(x);
-        temp_point.push_back(y);
-        point_list.push_back(temp_point);
-    }
-    import_points(point_list);
-}*/
-
-
-// Import points from file with specified delimiter into a temporary list - calls import_points()
-kmeans_set::kmeans_set(std::ifstream & input_file, char delimiter):
+//Pour un fichier importé
+/*kmeans_set::kmeans_set(std::ifstream & input_file, char delimiter):
         epsilon(0),
         limit(std::numeric_limits<unsigned int>::max()) {
     std::string line;
@@ -121,18 +108,52 @@ kmeans_set::kmeans_set(std::ifstream & input_file, char delimiter):
         }
     }
     import_points(temp_point_list);
+}*/
+
+//Réaffectation des centroides et calcul du mouvement maximal parmi les centroides
+double kmeans_set::recompute_centroids() {
+
+    std::list<std::vector<double>> old_centroids;
+    for (auto i = clusters.begin(); i != clusters.end(); i++) {
+        old_centroids.push_back(i->centroid);
+    }
+
+    for (auto i = clusters.begin(); i != clusters.end(); i++) {
+        std::fill(i->centroid.begin(), i->centroid.end(), 0);
+    }
+
+    //Si il n'y a pas eu de mouvement, on laisse le centroide tel qu'il est
+    auto j_old = old_centroids.begin();
+    for (auto i = clusters.begin(); i != clusters.end(); i++, j_old++) {
+        if (!(i->move_flag)) {
+            i->centroid = *j_old;
+        }
+    }
+
+    //On actualise la position des centroides
+    for (auto data = dataset.begin(); data != dataset.end(); data++) {
+        if (data->centroid_pointer->move_flag) {
+            auto centroid_pointer_centroid_iter = data->centroid_pointer->centroid.begin();
+            for (auto coord = data->point.begin(); coord != data->point.end(); coord++, centroid_pointer_centroid_iter++) {
+                //On actualise le centroide en l'affectant à la moyenne des autres points
+                *centroid_pointer_centroid_iter += *coord / data->centroid_pointer->count;
+            }
+        }
+    }
+
+    // Calcul du delta maximal
+    double delta = 0;
+    auto old_centroids_iter = old_centroids.begin();
+    for (auto i = clusters.begin(); i != clusters.end(); i++) {
+        double test_delta = distance(*old_centroids_iter, i->centroid);
+        if (delta < test_delta) {delta = test_delta; }
+    }
+    return delta;
 }
 
-
-// Import points from list on construction
-kmeans_set::kmeans_set(std::list<std::vector<double>> & point_list):
-        epsilon(0),
-        limit(std::numeric_limits<unsigned int>::max()) {
-    import_points(point_list);
-}
 
 //Distribution des centroides
-void kmeans_set::compute_centroids(int k) {
+void kmeans_set::algo_kmeans(int k) {
     //Pour avoir des centroides équirépartis
     {   unsigned int subset = dataset.size() / k;
         unsigned int rem = dataset.size() % k;
@@ -172,72 +193,13 @@ void kmeans_set::compute_centroids(int k) {
         delta_max_1 = recompute_centroids();
 
         {
-            std::cout << "\n\nItération " << iteration_index++ << "   Nombre de clusters: " << clusters.size();
-            unsigned int ct = 0;
+            std::cout << "\n\nIteration " << iteration_index++ << "   Nombre de clusters: " << clusters.size();
+            unsigned int cluster_number = 0;
             for (auto cluster_iter = clusters.begin(); cluster_iter != clusters.end(); ++cluster_iter) {
-                std::cout << "\n"  << "Move State: " << ((cluster_iter->move_flag)?("INVALID    "):("  valid    ")) << ++ct << ": ";
+                std::cout << "\n"  << "Cluster stable: " << ((cluster_iter->move_flag)?("Non    "):("  Oui    ")) << cluster_number << ": ";
                 print_point(std::cout, cluster_iter->centroid, ',');
-                std::cout << "   Nombre de points: " << cluster_iter->count << "   Address: " << &(*cluster_iter);
+                std::cout << "   Nombre de points: " << cluster_iter->count;
             }
         }
     }
 }
-
-
-
-double kmeans_set::recompute_centroids() {
-
-
-    std::list<std::vector<double>> old_centroids;
-    for (auto i = clusters.begin(); i != clusters.end(); i++) {
-        old_centroids.push_back(i->centroid);
-    }
-
-    for (auto cluster_iter = clusters.begin(); cluster_iter != clusters.end(); cluster_iter++) {
-        std::fill(cluster_iter->centroid.begin(), cluster_iter->centroid.end(), 0);
-    }
-    auto old_centroid_iter = old_centroids.begin();
-    for (auto cluster_iter = clusters.begin(); cluster_iter != clusters.end(); ++cluster_iter, ++old_centroid_iter) {
-        if (!(cluster_iter->move_flag)) {
-            cluster_iter->centroid = *old_centroid_iter;
-        }
-    }
-
-    //On actualise la position des centroides
-    for (auto universe_iter = dataset.begin(); universe_iter != dataset.end(); universe_iter++) {
-        if (universe_iter->centroid_pointer->move_flag) {
-            auto centroid_pointer_centroid_iter = universe_iter->centroid_pointer->centroid.begin();
-            for (auto point_iter = universe_iter->point.begin(); point_iter != universe_iter->point.end(); ++point_iter, ++centroid_pointer_centroid_iter) {
-                // Division on the fly useful for accuracy super-large dimensions - doubles computation
-                *centroid_pointer_centroid_iter += *point_iter / universe_iter->centroid_pointer->count;
-            }
-        }
-    }
-
-    // Calcul du delta maximal
-    double max_delta = 0;
-    auto old_centroids_iter = old_centroids.begin();
-    for (auto centroids_iter = clusters.begin(); centroids_iter != clusters.end(); centroids_iter++) {
-        double test_delta = distance(*old_centroids_iter, centroids_iter->centroid);
-        if (max_delta < test_delta) { max_delta = test_delta; }
-    }
-    return max_delta;
-}
-
-
-
-void kmeans_set::print_centroids(std::ostream & output, char delimiter) {
-    for(auto cluster_iter = clusters.begin(); cluster_iter != clusters.end(); cluster_iter++) {
-        for (auto centroid_iter = cluster_iter->centroid.begin(); centroid_iter != cluster_iter->centroid.end(); ++centroid_iter) {
-            if(cluster_iter != clusters.begin() && centroid_iter == cluster_iter->centroid.begin()) {
-                output << "\n";
-            } else if(centroid_iter != cluster_iter->centroid.begin()) {
-                output << delimiter;
-            }
-            output << *centroid_iter;
-        }
-    }
-}
-
-
-
