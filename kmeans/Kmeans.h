@@ -25,7 +25,7 @@ struct point_features {
 };
 
 class kmeans_set {
-    //Nombre de points
+    //Nombre de points, utile pour des points générés aléatoirement
     int nb_points;
 
     // Limite du nombre d'itérations
@@ -53,16 +53,32 @@ class kmeans_set {
     void print_point(std::ostream &, std::vector<double>, char);
 
 public:
+    //1er type : Avec des points tirés aléatoirement
+    kmeans_set(int a):
+            nb_points(30),
+            epsilon(0),
+            limit(1000)
+    {
+        std::list<std::vector<double>> point_list;
+        for (auto i =0;i < nb_points;i++){
+            //Points tirés aléatoirement entre 0 et a
+            auto x = rand()%(a);
+            auto y = rand()%(a);
+            std::vector<double> temp_point;
+            temp_point.push_back(x);
+            temp_point.push_back(y);
+            point_list.push_back(temp_point);
+        }
+        import_points(point_list);
+    }
 
-    kmeans_set(std::ifstream &, char);                // Import points from file with specified delimiter
-    kmeans_set(std::list<std::vector<double>> &);   // Import points from vector on construction
+    //2ème type : Avec des points provenant d'un fichier externe
+    /*kmeans_set(std::ifstream &, char);
+    kmeans_set(std::list<std::vector<double>> &);*/
 
-    void compute_centroids(int);
-    void print_centroids(std::ostream &, char);       // output stream, centroid delimiter
-    void print_clusters(std::ostream &, char, char);  // output stream, point delimiter, centroid designator
+    void algo_kmeans(int);
+    void print_centroids(std::ostream &, char);
 };
 
 
 #endif //TEST_ALGO_MACHINELEARNING_KMEANS_H
-
-
