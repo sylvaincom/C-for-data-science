@@ -131,7 +131,7 @@ Done
 ```
 We have trained our neural network: given an input, we can predict the XOR value!
 
-## 3) More experiments
+## 3) Modifying the architecture of our neural network
 
 We can modify the topology of our neural network by writing line 11 of `makeTrainingSamples.cpp`:
 ```
