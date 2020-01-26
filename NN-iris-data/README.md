@@ -6,7 +6,7 @@ Our training data has 3 classes (labels 0, 1 and 2), with 50 samples per class a
 
 # 1) Getting the Iris dataset in the right format
 
-We loaded the Iris data set on Python and exported in the `txt` format using the Pandas library. The labels are in {-1, 0, 1}. Then, we opened a basic text editor to change it so that the header of `iris.txt` is:
+We loaded the Iris data set on Python and exported in the `txt` format using the Pandas library. The labels are transformed from {0, 1, 2} to {1, 0, -1}. Then, we opened a basic text editor to change it so that the header of `iris.txt` is:
 ```
 topology: 4 4 1
 in: 5.1 3.5 1.4 0.2
