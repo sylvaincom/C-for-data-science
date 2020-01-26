@@ -1,6 +1,6 @@
 ## Making a Neural Net Simulator in C++
 
-The codes are taken from [Dave Miller's tutorial](http://www.millermattson.com/dave/?p=54).
+The codes are taken from [Dave Miller's tutorial](http://www.millermattson.com/dave/?p=54). Congrats to his work!
 
 To run them, once we are in the correct directory, execute in a Terminal:
 ```
