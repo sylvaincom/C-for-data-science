@@ -126,14 +126,14 @@ instead of:
 ```
 	cout << "topology: 2 4 1" << endl;
 ```
-Hence, our hidden layer will have 5 neurons instead of 4.  We ran the simulations and we appear to have better results (meaning that the error gets smaller faster with respect to the index of pass).
+Hence, our hidden layer will have 5 neurons instead of 4.  We ran the simulations and we appear to have better results (meaning that our predictions are better for a same number of passes).
 
-Being able to modidy the architecture of our model is very important. Note that the topology (for example the number of neurons of the hidden-layer) is a hyper-parameter.
+Being able to modify the architecture of our model is very important. Note that the topology (for example the number of neurons of the hidden-layer) is a hyper-parameter.
 > In machine learning, a **hyperparameter** is a parameter whose value is set before the learning process begins. The values of other parameters are obtained via training.
 
-We can also modify all the other important hyperparameters :
+We were also able to modify all the other important hyperparameters :
 - the learning rate at line 139 of `neural-net-tutorial.cpp`
-- the activation/transfer function at lines 192-202 of `neural-net-tutorial.cpp`
+- the activation/transfer function at lines 191-202 of `neural-net-tutorial.cpp`
 - the loss/error function at lines 262-272 of `neural-net-tutorial.cpp`
 
 We did several simulations to see the impact on the convergence.
