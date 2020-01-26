@@ -110,7 +110,7 @@ Net recent average error: 0.0217133
 Pass 2002
 Done
 ```
-We have trained our neural network: given an input, we can predict the XOR value!
+We have trained the weights our neural network: given an input, we can predict the XOR value!
 
 ## 3) Modifying the model of our neural network
 
