@@ -112,7 +112,7 @@ Done
 ```
 We have trained our neural network: given an input, we can predict the XOR value!
 
-## 3) Modifying the architecture of our neural network
+## 3) Modifying the model of our neural network
 
 We can modify the topology of our neural network by writing line 11 of `makeTrainingSamples.cpp`:
 ```
@@ -126,3 +126,9 @@ Hence, our hidden layer will have 5 neurons instead of 4.  We ran the simulation
 
 Being able to modidy the architecture of our model is very important. Note that the topology (for example the number of neurons of the hidden-layer) is a hyper-parameter.
 > In machine learning, a **hyperparameter** is a parameter whose value is set before the learning process begins. The values of other parameters are obtained via training.
+
+We can also modify all the other important hyperparameters :
+- the learning rate at line 139 of `neural-net-tutorial.cpp`
+- the activation/transfer function at lines 192-202 of `neural-net-tutorial.cpp`
+- the loss/error function at lines 262-272 of `neural-net-tutorial.cpp`
+We did several simulations to see the impact on the convergence.
