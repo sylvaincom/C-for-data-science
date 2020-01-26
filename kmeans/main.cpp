@@ -5,12 +5,12 @@ int main() {
 
     std::ostream &output_console = std::cout;
 
-    //Pour un fichier choisi dans
+    //Pour un fichier choisi
     /*std::ifstream input;
     input.open("C:/Users/julie/Desktop/test_points.txt");   //à adapter en fonction du répertoire
     kmeans_set km(input, ',');*/
 
-    //Pour une génération de points aléatoire
+    //Pour une génération de points aléatoire (coordonnées comprises entre 0 et 20)
     kmeans_set kmeans_set(20);
 
     kmeans_set.algo_kmeans(4);
