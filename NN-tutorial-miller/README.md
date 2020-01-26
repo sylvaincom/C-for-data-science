@@ -34,6 +34,8 @@ out: 1.0
 ```
 The first line is the topology we want for our neural network. Here, the architecture of our neural network consists of three layers with respectively 2, 4 and 1 nodes. (Indeed, the input is of size 2 and the ouput is of size 1.) Then, we give the corresponding inputs and outputs we wish our neural network to predict.
 
+Beware that our training data uses `RAND()` thus changes at each we generate it.
+
 ## 2) Training our neural network on `trainingData.txt`
 
 Once we have our training data, we train our neural network on it. The training data we choose has to be stated at line 361 of the file `neural-net-tutorial.cpp`:
@@ -111,6 +113,8 @@ Pass 2002
 Done
 ```
 We have trained the weights our neural network: given an input, we can predict the XOR value!
+
+Note that for a same input `trainingData.txt`, all the predictions `Outputs` and errors `Net recent average error` do not each for different execution.
 
 ## 3) Modifying the model of our neural network
 
